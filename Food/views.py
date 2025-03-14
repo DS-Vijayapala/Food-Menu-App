@@ -1,6 +1,10 @@
+""" This file is used to create the views for the food app. """
+
+from django.template import loader
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Item
+
 
 # Create your views here.
 
@@ -8,8 +12,11 @@ from .models import Item
 def index(request):
 
     iltem_list = Item.objects.all()
+    template = loader.get_template('food/index.html')
+    context = {
 
-    return HttpResponse(iltem_list)
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def item(request):
