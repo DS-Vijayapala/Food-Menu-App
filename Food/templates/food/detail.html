@@ -1,3 +1,15 @@
-<h2> {{item.item_name}} </h2>
-<h3> {{item.item_desc}} </h3>
-<h4> {{item.item_price}} </h4>
+{% extends 'food/base.html' %}
+
+
+{% block body %}
+
+<div class="container">
+
+    <h2> {{item.item_name}} </h2>
+    <h3> {{item.item_desc}} </h3>
+    <h4> {{item.item_price}} </h4>
+
+</div>
+
+
+{% endblock %}
