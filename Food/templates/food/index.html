@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% for item in item_list %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<ul>
+    <li>{{ item.id }}-{{ item.item_name }} </li>
 
-<body>
-    <h1>This is Food View.</h1>
+</ul>
 
-
-</body>
-
-</html>
+{% endfor %}
