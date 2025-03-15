@@ -14,4 +14,7 @@ urlpatterns = [
     path('<int:item_id>/', views.detail, name='Detail'),
     path('item/', views.item, name='item'),
 
+    # Add a Form
+    path('add', views.create_item, name='create_item'),
+
 ]

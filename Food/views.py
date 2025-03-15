@@ -1,7 +1,8 @@
 """ This file is used to create the views for the food app. """
 
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import ItemForm
 from django.http import HttpResponse
 from .models import Item
 
@@ -33,3 +34,19 @@ def detail(request, item_id):
     }
 
     return render(request, 'food/detail.html', context)
+
+
+def create_item(request):
+    """ This function is used to create the item. """
+
+    form = ItemForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect('food:index')
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'food/item-form.html', context)
