@@ -17,4 +17,7 @@ urlpatterns = [
     # Add a Form
     path('add', views.create_item, name='create_item'),
 
+    # Update a Form
+    path('update/<int:id>/', views.update_item, name='update_item'),
+
 ]
