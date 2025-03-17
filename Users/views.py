@@ -3,6 +3,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from . forms import RegisterForm
+from django.contrib.auth.decorators import login_required
 
 # Create register view
 
@@ -23,3 +24,10 @@ def register(request):
 
     context = {'form': form}
     return render(request, 'users/register.html', context)
+
+
+@login_required
+def profilepage(request):
+    """ Profile page for the user."""
+
+    return render(request, 'users/profile.html')
