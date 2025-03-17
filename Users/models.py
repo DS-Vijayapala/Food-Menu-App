@@ -9,8 +9,8 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(
-        default='media/default.jpg', upload_to='profile_pics')
+        default='default.jpg', upload_to='profile_pics')
     location = models.CharField(max_length=100)
 
-    def __str__(self) -> str:
-        return str(self.user.username)
+    def __str__(self):
+        return self.user.username
