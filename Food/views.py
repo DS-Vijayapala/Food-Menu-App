@@ -1,6 +1,6 @@
 """ This file is used to create the views for the food app. """
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import ItemForm
@@ -20,7 +20,7 @@ from .models import Item
 
 
 class IndexClassView(ListView):
-    """ This class is used to display the items. """
+    """ This class is used to display the items.  This is a class based view. """
     model = Item
     template_name = 'food/index.html'
     context_object_name = 'item_list'
@@ -50,20 +50,31 @@ class FoodDetail(DetailView):
     template_name = 'food/detail.html'
 
 
-def create_item(request):
-    """ This function is used to create the item. """
+# def create_item(request):
+#     """ This function is used to create the item. """
 
-    form = ItemForm(request.POST or None)
+#     form = ItemForm(request.POST or None)
 
-    if form.is_valid():
-        form.save()
-        return redirect('food:index')
+#     if form.is_valid():
+#         form.save()
+#         return redirect('food:index')
 
-    context = {
-        'form': form,
-    }
+#     context = {
+#         'form': form,
+#     }
 
-    return render(request, 'food/item-form.html', context)
+#     return render(request, 'food/item-form.html', context)
+
+class CreateItem(CreateView):
+    """ This class is used to create the item. """
+
+    model = Item
+    fields = ['item_name', 'item_desc', 'item_price', 'item_image']
+    template_name = 'food/item-form.html'
+
+    def form_valid(self, form):
+        form.instance.user_name = self.request.user
+        return super().form_valid(form)
 
 
 def update_item(request, id):
