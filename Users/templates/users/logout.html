@@ -1,5 +1,20 @@
-<h2>You have been logged out.</h2>
-<br>
-<a href="{% url 'login' %}">Login again</a>
-<br>
-<a href="{% url 'food:index' %}">Home</a>
+{% extends 'Food/base.html' %}
+
+{% block body %}
+
+<div class="container mt-5 ">
+
+    <h2 class="text-center">You have been logged out.</h2>
+    <br>
+
+    <div class="text-center">
+
+
+        <a href="{% url 'login' %}" class="btn btn-primary mt-5">Login again</a>
+        <br>
+        <a href="{% url 'food:index' %}" class="btn btn-primary mt-2">Home</a>
+    </div>
+
+</div>
+
+{% endblock %}

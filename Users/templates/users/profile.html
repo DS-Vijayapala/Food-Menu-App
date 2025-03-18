@@ -1,5 +1,14 @@
-<h3>
-    {{user.username}}
-</h3><br>
+{% extends 'Food/base.html' %}
 
-<img src="{{user.profile.image.url}}" width="200" height="200"><br><br>
+{% block body %}
+
+<div class="container mt-5 ">
+    <h3>
+        {{user.username}}
+    </h3><br>
+
+    <img src="{{user.profile.image.url}}" width="200" height="200"><br><br>
+
+</div>
+
+{% endblock %}
