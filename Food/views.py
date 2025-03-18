@@ -1,22 +1,29 @@
 """ This file is used to create the views for the food app. """
 
-
+from django.views.generic import ListView, DetailView
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import ItemForm
-from django.http import HttpResponse
 from .models import Item
 
 
 # Create your views here.
 
 
-def index(request):
+# def index(request): # This is a function based view
 
-    item_list = Item.objects.all()
-    context = {
-        'item_list': item_list,
-    }
-    return render(request, 'food/index.html', context)
+#     item_list = Item.objects.all()
+#     context = {
+#         'item_list': item_list,
+#     }
+#     return render(request, 'food/index.html', context)
+
+
+class IndexClassView(ListView):
+    """ This class is used to display the items. """
+    model = Item
+    template_name = 'food/index.html'
+    context_object_name = 'item_list'
 
 
 def item(request):
@@ -25,15 +32,22 @@ def item(request):
     return HttpResponse("<h1>Hello, world. You're at the polls item.</h1>")
 
 
-def detail(request, item_id):
-    """ This function is used to display the details of the item. """
+# def detail(request, item_id):
+#     """ This function is used to display the details of the item. """
 
-    item = Item.objects.get(pk=item_id)
-    context = {
-        'item': item,
-    }
+#     item = Item.objects.get(pk=item_id)
+#     context = {
+#         'item': item,
+#     }
 
-    return render(request, 'food/detail.html', context)
+#     return render(request, 'food/detail.html', context)
+
+
+class FoodDetail(DetailView):
+    """ This class is used to display the details of the item. """
+
+    model = Item
+    template_name = 'food/detail.html'
 
 
 def create_item(request):
